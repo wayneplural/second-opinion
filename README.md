@@ -6,6 +6,13 @@ A github action which reviews your code
 ### Example Usage
 
 ```yaml
+name: Second Opinion - AI Code Review
+run-name: Second Opinion - Diagnosing code 🩺
+on: 
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
   second-opinion:
     permissions:
       pull-requests: write
@@ -18,9 +25,10 @@ A github action which reviews your code
           fetch-depth: 2
 
       - name: Generate A Second Opinion
-        uses: wayneplural/second-opinion@v0
+        uses: wayneplural/second-opinion@v0.2
         with:
           azure-openai-api-endpoint: "https://openaiplural.openai.azure.com/"
           azure-openai-api-key: ${{ secrets.AZURE_OPENAI_API_KEY }}
           api-version: "2024-05-01-preview"
+      
 ```
