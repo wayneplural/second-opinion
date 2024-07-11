@@ -1,10 +1,10 @@
 [build-system]
-requires = ["hatchling", "openai>=1.35.13"]
+requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
 name = "second_opinion"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
   { name="Wayne Bratley", email="wayne@plural.ai" },
 ]
@@ -16,6 +16,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License", 
     "Operating System :: OS Independent",
 ]
+dependencies = [
+  "openai>=1.35.13"
+]
 
 [project.urls]
 Homepage = "https://github.com/wayneplural/second-opinion"
@@ -23,3 +26,4 @@ Issues = "https://github.com/wayneplural/second-opinion/issues"
 
 [project.scripts]
 second-opinion = "second_opinion:main"
+
