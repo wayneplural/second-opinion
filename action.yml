@@ -21,10 +21,15 @@ runs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.12' 
-        cache: 'pip'
-    - run: |
-        pip install -r python/requirements.txt
+
+    - name: Install Second Opinion
       shell: bash
+      run: |
+          python3 -m venv .env
+          source .env/bin/activate
+          python -m pip install --upgrade pip
+          python -m pip install second_opinion
+
 
     - name: Run Second Opinion
       id: second-opinion
@@ -35,7 +40,7 @@ runs:
         PR_TITLE: ${{ github.event.pull_request.title }}
         PR_BODY: ${{ github.event.pull_request.body }}
       run: |
-        output=$(python python/second_opinion.py diff.txt)
+        output=$(second-opinion diff.txt)
         echo "PAYLOAD<<EOF"$'\n'"$output"$'\n'EOF >> "$GITHUB_OUTPUT"
       shell: bash
 
