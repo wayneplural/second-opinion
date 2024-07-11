@@ -46,11 +46,17 @@ def review_code(diff: str) -> str:
 
     return f"## Second Opinion 🩺 (AI Code Review)\n\n{completion.choices[0].message.content}"
 
+def main():
+    if len(sys.argv) < 2:
+        print("usage: second-opinion <diff_file>")
+        sys.exit(1)
 
-if __name__ == "__main__":
     with open(sys.argv[1], "r") as f:
         diff = f.read()
 
     opinion = review_code(diff)
 
     print(opinion)
+
+if __name__ == "__main__":
+    main()

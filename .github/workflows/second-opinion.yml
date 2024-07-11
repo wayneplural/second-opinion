@@ -1,11 +1,6 @@
-# Second Opinion 🩺 (AI Code Review)
+on: [push]
 
-A github action which reviews your code
-
-
-### Example Usage
-
-```yaml
+jobs:
   second-opinion:
     permissions:
       pull-requests: write
@@ -23,4 +18,4 @@ A github action which reviews your code
           azure-openai-api-endpoint: "https://openaiplural.openai.azure.com/"
           azure-openai-api-key: ${{ secrets.AZURE_OPENAI_API_KEY }}
           api-version: "2024-05-01-preview"
-```
+      
