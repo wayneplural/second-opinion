@@ -13,9 +13,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Get code differences into a file
-      run: git diff --no-prefix -U2000 --output diff.txt HEAD^1 HEAD
-      shell: bash
 
     - name: Setup Python 3.12
       uses: actions/setup-python@v5
@@ -31,6 +28,10 @@ runs:
           python -m pip install second_opinion
 
 
+    - name: Get code differences into a file
+      run: git diff --no-prefix -U2000 --output diff.txt HEAD^1 HEAD
+      shell: bash
+      
     - name: Run Second Opinion
       id: second-opinion
       env:
@@ -40,6 +41,7 @@ runs:
         PR_TITLE: ${{ github.event.pull_request.title }}
         PR_BODY: ${{ github.event.pull_request.body }}
       run: |
+        source .env/bin/activate
         output=$(second-opinion diff.txt)
         echo "PAYLOAD<<EOF"$'\n'"$output"$'\n'EOF >> "$GITHUB_OUTPUT"
       shell: bash
