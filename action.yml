@@ -1,5 +1,8 @@
 name: 'Second Opinion - AI Code Review Action'
 description: 'Generates AI Code Reviews for Pull Requests'
+branding:
+  icon: 'eye'
+  color: 'blue'
 inputs:
   openai-api-key:
     description: 'OpenAI API Key (Azure or OpenAI)'
