@@ -17,9 +17,9 @@ jobs:
           fetch-depth: 2
 
       - name: Generate A Second Opinion
-        uses: wayneplural/second-opinion@v0.2
+        uses: wayneplural/second-opinion@v2
         with:
           azure-openai-api-endpoint: "https://openaiplural.openai.azure.com/"
-          azure-openai-api-key: ${{ secrets.AZURE_OPENAI_API_KEY }}
-          api-version: "2024-05-01-preview"
-      
+          azure-api-version: "2024-05-01-preview"
+          openai-api-key: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          ai-model: "second-opinion"
