@@ -11,12 +11,12 @@ It is recommended to store your API key as a secret in Github to avoid it being 
 https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions
 
 
-The action wayneplural/second-opinion@v2
+The action wayneplural/second-opinion@v5
 is used as follows and has the following options:
 
 ```yaml
   - name: Generate A Second Opinion
-    uses: wayneplural/second-opinion@v2
+    uses: wayneplural/second-opinion@v5
     with:
       openai-api-key: '<YOUR API KEY>' # Required - This can be either an Open AI key or Azure Open AI key if using Azure
       ai-model: '<API MODEL>' # Required - The GPT model to use or the deployment model if using an Azure deployment
@@ -69,7 +69,7 @@ jobs:
           fetch-depth: 2
 
       - name: Generate A Second Opinion
-        uses: wayneplural/second-opinion@v2
+        uses: wayneplural/second-opinion@v5
         with:
           openai-api-key: ${{ secrets.AZURE_OPENAI_API_KEY }}
           ai-model: "gpt-3.5-turbo"
@@ -98,7 +98,7 @@ jobs:
           fetch-depth: 2
 
       - name: Generate A Second Opinion
-        uses: wayneplural/second-opinion@v2
+        uses: wayneplural/second-opinion@v5
         with:
           azure-openai-api-endpoint: "https://openaiplural.openai.azure.com/"
           azure-api-version: "2024-05-01-preview"
