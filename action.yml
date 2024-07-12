@@ -1,4 +1,4 @@
-name: 'Second Opinion'
+name: 'Second Opinion - AI Code Review Action'
 description: 'Generates AI Code Reviews for Pull Requests'
 inputs:
   openai-api-key:
