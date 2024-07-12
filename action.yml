@@ -41,7 +41,7 @@ runs:
     - name: Run Second Opinion
       id: second-opinion
       env:
-        OPENAI_API_KEY: ${{ inputs.azure-openai-api-key }}
+        OPENAI_API_KEY: ${{ inputs.openai-api-key }}
         AZURE_OPENAI_API_ENDPOINT: ${{ inputs.azure-openai-api-endpoint }}
         AZURE_OPENAI_API_VERSION: ${{ inputs.api-version }}
         AI_MODEL: ${{ inputs.ai-model }}
