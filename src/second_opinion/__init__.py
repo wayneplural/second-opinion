@@ -29,13 +29,19 @@ def review_code(diff: str) -> str:
         client = AzureOpenAI(
             azure_endpoint=os.environ.get("AZURE_OPENAI_API_ENDPOINT"),
             api_version=os.environ.get("AZURE_OPENAI_API_VERSION"),
+            api_key=os.environ.get("OPENAI_API_KEY"),
         )
+
+    custom_prompt = os.environ.get("CUSTOM_PROMPT")
+    prompt = custom_prompt if custom_prompt and custom_prompt.strip() != "" else DEFAULT_PROMPT
+
+
 
     completion = client.chat.completions.create(
         messages=[
             {
                 "role": "system",
-                "content": os.environ.get("CUSTOM_PROMPT", DEFAULT_PROMPT),
+                "content": prompt
             },
             {
                 "role": "user",
