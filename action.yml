@@ -1,15 +1,21 @@
 name: 'Second Opinion'
 description: 'Generates AI Code Reviews for Pull Requests'
 inputs:
+  openai-api-key:
+    description: 'OpenAI API Key (Azure or OpenAI)'
+    required: true
+  ai-model:
+    description: 'GPT Model to use for AI Code Review (This will be the deployment name for Azure OpenAI API)'
+    required: true
+  azure-api-version:
+    description: 'Azure OpenAI API Version (Required for Azure OpenAI API)'
+    required: false
   azure-openai-api-endpoint:
-    description: 'Azure OpenAI API Endpoint'
-    required: true
-  azure-openai-api-key:
-    description: 'Azure OpenAI API Key'
-    required: true
-  api-version:
-    description: 'OpenAI Model'
-    required: true
+    description: 'Azure OpenAI API Endpoint - If provided this will use the Azure OpenAI API Client, otherwise it will use OpenAI API'
+    required: false
+  custom-prompt:
+    description: 'Custom Prompt to use for AI Code Review'
+    required: false
 runs:
   using: "composite"
   steps:
@@ -35,9 +41,11 @@ runs:
     - name: Run Second Opinion
       id: second-opinion
       env:
-        AZURE_OPENAI_API_KEY: ${{ inputs.azure-openai-api-key }}
+        OPENAI_API_KEY: ${{ inputs.azure-openai-api-key }}
         AZURE_OPENAI_API_ENDPOINT: ${{ inputs.azure-openai-api-endpoint }}
-        API_VERSION: ${{ inputs.api-version }}
+        AZURE_OPENAI_API_VERSION: ${{ inputs.api-version }}
+        AI_MODEL: ${{ inputs.ai-model }}
+        CUSTOM_PROMPT: ${{ inputs.custom-prompt }}
         PR_TITLE: ${{ github.event.pull_request.title }}
         PR_BODY: ${{ github.event.pull_request.body }}
       run: |
