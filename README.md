@@ -16,7 +16,7 @@ is used as follows and has the following options:
 
 ```yaml
   - name: Generate A Second Opinion
-    uses: wayneplural/second-opinion@v12
+    uses: wayneplural/second-opinion@v13
     with:
       openai-api-key: '<YOUR API KEY>' # Required - This can be either an Open AI key or Azure Open AI key if using Azure
       ai-model: '<API MODEL>' # Required - The GPT model to use or the deployment model if using an Azure deployment
@@ -69,7 +69,7 @@ jobs:
           fetch-depth: 2
 
       - name: Generate A Second Opinion
-        uses: wayneplural/second-opinion@v12
+        uses: wayneplural/second-opinion@v13
         with:
           openai-api-key: ${{ secrets.AZURE_OPENAI_API_KEY }}
           ai-model: "gpt-3.5-turbo"
@@ -98,7 +98,7 @@ jobs:
           fetch-depth: 2
 
       - name: Generate A Second Opinion
-        uses: wayneplural/second-opinion@v12
+        uses: wayneplural/second-opinion@v13
         with:
           azure-openai-api-endpoint: "https://openaiplural.openai.azure.com/"
           azure-api-version: "2024-05-01-preview"
