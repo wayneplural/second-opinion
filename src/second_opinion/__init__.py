@@ -9,6 +9,7 @@ DEFAULT_PROMPT = """
 
                 Generate a small summary of the changes, then highlight any issues in design, style, functionality, complexity, naming, testing, or any obvious errors. Be specific about any issues you find, highlighting the specific code and providing suggestions in code blocks.
                 In the last section give your overall opinion rating as a noun or short sentence and an emoji. E.g. "Good to ship! 🚢", "Needs more work 🚧" or "Great work! 🎉". Be generous when giving your opinion.
+                In the "Issues Found" section: only provide feedback on the code that has been changed (lines beginning with a + or -), you may provide additional feedback on adjacent code in the "Other Improvement Suggestions" section.
 
                 Use markdown to format your response with headings and bullet points under the followng headings (only include sections if relevant):
 
