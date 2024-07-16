@@ -22,12 +22,15 @@ inputs:
   diff-context:
     description: 'Number of lines of context to include in the diff (default: 10)'
     required: false
+  max-length:
+    description: 'Truncates the input to the specified length'
+    required: false
 runs:
   using: "composite"
   steps:
 
     - name: Setup Python 3.12
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@v4
       with:
         python-version: '3.12' 
 
@@ -54,6 +57,7 @@ runs:
         CUSTOM_PROMPT: ${{ inputs.custom-prompt }}
         PR_TITLE: ${{ github.event.pull_request.title }}
         PR_BODY: ${{ github.event.pull_request.body }}
+        MAX_LENGTH: ${{ inputs.max-length }}
       run: |
         source .env/bin/activate
         output=$(second-opinion diff.txt)
@@ -61,7 +65,7 @@ runs:
       shell: bash
 
     - name: Give Opinion on PR
-      uses: actions/github-script@v7
+      uses: actions/github-scrip@v7
       env:
         PAYLOAD: ${{ steps.second-opinion.outputs.PAYLOAD }}
       with:
