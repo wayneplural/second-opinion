@@ -22,6 +22,9 @@ inputs:
   diff-context:
     description: 'Number of lines of context to include in the diff (default: 10)'
     required: false
+  max-length:
+    description: 'Truncates the input to the specified length'
+    required: false
 runs:
   using: "composite"
   steps:
@@ -54,6 +57,7 @@ runs:
         CUSTOM_PROMPT: ${{ inputs.custom-prompt }}
         PR_TITLE: ${{ github.event.pull_request.title }}
         PR_BODY: ${{ github.event.pull_request.body }}
+        MAX_LENGTH: ${{ inputs.max-length }}
       run: |
         source .env/bin/activate
         output=$(second-opinion diff.txt)

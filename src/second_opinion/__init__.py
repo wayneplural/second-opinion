@@ -35,7 +35,10 @@ def review_code(diff: str) -> str:
     custom_prompt = os.environ.get("CUSTOM_PROMPT")
     prompt = custom_prompt if custom_prompt and custom_prompt.strip() != "" else DEFAULT_PROMPT
 
-
+    # Truncate the diff if it's too long
+    max_length = os.environ.get("MAX_LENGTH")
+    if max_length and max_length.isdigit():
+        diff = diff[:int(max_length)]
 
     completion = client.chat.completions.create(
         messages=[
