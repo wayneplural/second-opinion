@@ -19,12 +19,15 @@ inputs:
   custom-prompt:
     description: 'Custom Prompt to use for AI Code Review'
     required: false
+  diff-context:
+    description: 'Number of lines of context to include in the diff (default: 10)'
+    required: false
 runs:
   using: "composite"
   steps:
 
     - name: Setup Python 3.12
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: '3.12' 
 
@@ -38,7 +41,7 @@ runs:
 
 
     - name: Get code differences into a file
-      run: git diff --no-prefix -U2000 --output diff.txt HEAD^1 HEAD
+      run: git diff --no-prefix -U${{ inputs.diff-context || '10' }} --output diff.txt HEAD^1 HEAD
       shell: bash
       
     - name: Run Second Opinion
